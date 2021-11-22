@@ -10,10 +10,8 @@ public class Admin {
 
     public void listPending() {
         try {
-            DataBase dataBase=new DataBase();
-            Connection connection = DriverManager.getConnection(dataBase.getPath());
-            Statement statement = connection.createStatement();
-            ResultSet pendingDriver= statement.executeQuery("select * from Drivers where status=0");
+
+            ResultSet pendingDriver= DataBase.getStatement().executeQuery("select * from Drivers where status=0");
             while (pendingDriver.next()){
                 System.out.println("======================\nDriverName:"+pendingDriver.getString("driverName")
                         +"\nEmail:"+pendingDriver.getString("Email")
@@ -21,20 +19,13 @@ public class Admin {
                         +"\nLicence:"+pendingDriver.getString("licence")
                         +"\nNationalId:"+pendingDriver.getString("NationalId"));
             }
-            connection.close();
-            statement.close();
         } catch (SQLException throwables) {
             System.out.println("Error!");
         }
     }
     public void verifyDriver(String driverName){
         try {
-            DataBase dataBase=new DataBase();
-            Connection connection = DriverManager.getConnection(dataBase.getPath());
-            Statement statement = connection.createStatement();
-            statement.executeUpdate("update Drivers set status=1 where driverName='"+driverName+"'");
-            connection.close();
-            statement.close();
+            DataBase.getStatement().executeUpdate("update Drivers set status=1 where driverName='"+driverName+"'");
         } catch (SQLException throwables) {
             System.out.println("Error!");
         }
@@ -42,12 +33,7 @@ public class Admin {
     }
     public void verifyUser(String UserName){
         try {
-            DataBase dataBase=new DataBase();
-            Connection connection = DriverManager.getConnection(dataBase.getPath());
-            Statement statement = connection.createStatement();
-            statement.executeUpdate("update users set status=1 where UserName='"+UserName+"'");
-            connection.close();
-            statement.close();
+            DataBase.getStatement().executeUpdate("update users set status=1 where UserName='"+UserName+"'");
         } catch (SQLException throwables) {
             System.out.println("Error!");
         }
@@ -55,12 +41,7 @@ public class Admin {
     }
     public void suspendDriver(String driverName){
         try {
-            DataBase dataBase=new DataBase();
-            Connection connection = DriverManager.getConnection(dataBase.getPath());
-            Statement statement = connection.createStatement();
-            statement.executeUpdate("update Drivers set status=0 where driverName='"+driverName+"'");
-            connection.close();
-            statement.close();
+            DataBase.getStatement().executeUpdate("update Drivers set status=0 where driverName='"+driverName+"'");
         }
         catch (SQLException throwables) {
             System.out.println("Error!");
@@ -69,12 +50,7 @@ public class Admin {
     }
     public void suspendUser(String userName){
         try {
-            DataBase dataBase=new DataBase();
-            Connection connection = DriverManager.getConnection(dataBase.getPath());
-            Statement statement = connection.createStatement();
-            statement.executeUpdate("update users set status=0 where userName='"+userName+"'");
-            connection.close();
-            statement.close();
+            DataBase.getStatement().executeUpdate("update users set status=0 where userName='"+userName+"'");
         }
         catch (SQLException throwables) {
             System.out.println("Error!");

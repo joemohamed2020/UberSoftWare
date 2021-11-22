@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class main {
     public static void main(String[] args) {
+        DataBase.connect();
         System.out.println("=======================\nWelcome to our app :)\n=======================");
         Admin admin=new Admin("3mtaha","yoyo");
         while (true) {
@@ -132,6 +133,7 @@ public class main {
             }
             else if (choose == 3) {
                 System.out.println("Bye :(");
+                DataBase.disconnect();
                 break;
             }
         }

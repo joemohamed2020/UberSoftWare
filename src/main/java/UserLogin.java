@@ -7,15 +7,12 @@ public class UserLogin implements ILogin {
     public Person login() {
         Person user = new User();
         try {
-            DataBase dataBase=new DataBase();
-            Connection connection = DriverManager.getConnection(dataBase.getPath());
-            Statement statement = connection.createStatement();
             Scanner scanner = new Scanner(System.in);
             System.out.print("UserName: ");
             String userName = scanner.next();
             System.out.print("Password: ");
             String password = scanner.next();
-            ResultSet s = statement.executeQuery("select * from users");
+            ResultSet s = DataBase.getStatement().executeQuery("select * from users");
             while (s.next()) {
                 if (userName.equals(s.getString("UserName")) && password.equals(s.getString("Password"))) {
                     login = true;
@@ -35,9 +32,6 @@ public class UserLogin implements ILogin {
             } else {
                 System.out.println("UserName or Password is Wrong try again");
             }
-
-            statement.close();
-            connection.close();
         } catch (SQLException throwables) {
             System.out.println("Error!");
         }

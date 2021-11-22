@@ -1,14 +1,32 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 public class DataBase {
-    private String  path;
-    public DataBase() {
-        this.path = "jdbc:sqlite:C:\\Users\\ymoha\\IdeaProjects\\Uber\\src\\data.db";
+    private static Connection connection;
+    private static Statement statement;
+    public static void connect() {
+        try {
+             connection = DriverManager.getConnection("jdbc:sqlite:data.db");
+            statement=connection.createStatement();
+        }
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+    public static void disconnect(){
+        try {
+            statement.close();
+            connection.close();
+        }
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
     }
 
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
+    public static Statement getStatement() {
+        return statement;
     }
 }

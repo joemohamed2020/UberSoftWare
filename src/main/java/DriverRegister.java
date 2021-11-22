@@ -9,9 +9,6 @@ public class DriverRegister implements IRegister {
 
     public void Register (){
         try{
-            DataBase dataBase=new DataBase();
-            Connection connection = DriverManager.getConnection(dataBase.getPath());
-            Statement statement=connection.createStatement();
             Scanner scanner=new Scanner(System.in);
             System.out.print("UserName: ");
             String userName=scanner.next();
@@ -25,9 +22,7 @@ public class DriverRegister implements IRegister {
             String licence=scanner.next();
             System.out.print("NationalID: ");
             String nationalId=scanner.next();
-            statement.executeUpdate("INSERT INTO Drivers VALUES('"+userName+"','"+password+"','"+email+"','"+phone+"','"+licence+"','"+nationalId+"',"+0+")");
-            statement.close();
-            connection.close();
+            DataBase.getStatement().executeUpdate("INSERT INTO Drivers VALUES('"+userName+"','"+password+"','"+email+"','"+phone+"','"+licence+"','"+nationalId+"',"+0+")");
         }
         catch (SQLException sql){
             System.out.println("This Driver is already exist!");
