@@ -3,7 +3,8 @@ import java.sql.*;
 public class FavArea {
     public void addFav(String src, String driverName)  {
         try {
-            Connection connection = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\ymoha\\IdeaProjects\\Uber\\src\\data.db");
+            DataBase dataBase=new DataBase();
+            Connection connection = DriverManager.getConnection(dataBase.getPath());
             Statement statement = connection.createStatement();
             statement.executeUpdate("INSERT INTO FavArea VALUES('"+driverName+"','"+src+"')");
             statement.close();
@@ -15,7 +16,8 @@ public class FavArea {
     }
     public void removeFav(String src,String driverName) {
         try {
-            Connection connection = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\ymoha\\IdeaProjects\\Uber\\src\\data.db");
+            DataBase dataBase=new DataBase();
+            Connection connection = DriverManager.getConnection(dataBase.getPath());
             Statement statement = connection.createStatement();
             statement.executeUpdate("Delete from FavArea where driverName='"+driverName+"'And Source='"+src+"'");
             connection.close();
@@ -27,7 +29,8 @@ public class FavArea {
     }
     public void listFav(String driverName){
         try {
-            Connection connection = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\ymoha\\IdeaProjects\\Uber\\src\\data.db");
+            DataBase dataBase=new DataBase();
+            Connection connection = DriverManager.getConnection(dataBase.getPath());
             Statement statement = connection.createStatement();
             ResultSet source= statement.executeQuery("select Source from FavArea where driverName='"+driverName+"'");
             while (source.next()){

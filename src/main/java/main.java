@@ -2,6 +2,8 @@ import java.util.Scanner;
 
 public class main {
     public static void main(String[] args) {
+        Admin admin =new Admin("3mTaha","yoyo");
+        admin.listPending();
         System.out.println("=======================\nWelcome to our app :)\n=======================");
         while (true) {
             System.out.println("1-Register.\n2-LogIn\n3-Exit");
@@ -94,9 +96,7 @@ public class main {
                     else {
                         System.out.println("Wrong Entry");
                     }
-
                 }
-
             }
             else if (choose == 3) {
                 System.out.println("Bye :(");
