@@ -1,5 +1,4 @@
 import java.sql.*;
-
 public class Admin {
     private String name;
     private String Password;
@@ -9,7 +8,8 @@ public class Admin {
         Password = password;
     }
 
-    public void listPending(){
+    public void listPending()
+    {
         try {
             DataBase dataBase=new DataBase();
             Connection connection = DriverManager.getConnection(dataBase.getPath());
@@ -27,5 +27,32 @@ public class Admin {
         } catch (SQLException throwables) {
             System.out.println("Error!");
         }
+    }
+    public void verifyDriver(String driverName){
+        try {
+            DataBase dataBase=new DataBase();
+            Connection connection = DriverManager.getConnection(dataBase.getPath());
+            Statement statement = connection.createStatement();
+            statement.executeUpdate("update Drivers set status=1 where driverName='"+driverName+"'");
+            connection.close();
+            statement.close();
+        } catch (SQLException throwables) {
+            System.out.println("Error!");
+        }
+
+    }
+    public void suspendDriver(String driverName){
+        try {
+            DataBase dataBase=new DataBase();
+            Connection connection = DriverManager.getConnection(dataBase.getPath());
+            Statement statement = connection.createStatement();
+            statement.executeUpdate("update Drivers set status=0 where driverName='"+driverName+"'");
+            connection.close();
+            statement.close();
+        }
+        catch (SQLException throwables) {
+            System.out.println("Error!");
+        }
+
     }
 }

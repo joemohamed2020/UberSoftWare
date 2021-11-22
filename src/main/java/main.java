@@ -2,10 +2,11 @@ import java.util.Scanner;
 
 public class main {
     public static void main(String[] args) {
-        Admin admin =new Admin("3mTaha","yoyo");
-        admin.listPending();
         System.out.println("=======================\nWelcome to our app :)\n=======================");
         while (true) {
+            Admin ad=new Admin("3mtaha","yoyo");
+            ad.listPending();
+            ad.verifyDriver("Huda");
             System.out.println("1-Register.\n2-LogIn\n3-Exit");
             Scanner scanner = new Scanner(System.in);
             int choose = scanner.nextInt();
