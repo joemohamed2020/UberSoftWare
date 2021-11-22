@@ -1,6 +1,7 @@
 public class Driver extends Person {
     private String nationalID;
     private String licence ;
+    private int driverStatues;
 
     public Driver(){
     }
@@ -23,7 +24,13 @@ public class Driver extends Person {
     public void setLicence(String licence) {
         this.licence = licence;
     }
+    public int getDriverStatues() {
+        return driverStatues;
+    }
 
+    public void setDriverStatues(int driverStatues) {
+        this.driverStatues = driverStatues;
+    }
     @Override
     public String toString() {
         return "===================\nUserName:"+getUserName()+"\nPassword:"+getPassword()+"\nEmail:"+getEmail()+"\nMobileNumber:"+getMobileNumber()+"\nLicence:"+getMobileNumber()+"\nNationalId:"+getMobileNumber()+"\n===================";
