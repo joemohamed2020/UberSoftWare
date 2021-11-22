@@ -23,9 +23,15 @@ public class UserLogin implements ILogin {
                 }
             }
             if (login) {
-                System.out.println("Welcome Back:)");
-                System.out.println("==============");
-                user = new User(s.getString("UserName"), s.getString("Password"), s.getString("Email"), s.getString("PhoneNumber"));
+                if (s.getInt("status")==1) {
+                    System.out.println("Welcome Back:)");
+                    System.out.println("==============");
+                    user = new User(s.getString("UserName"), s.getString("Password"), s.getString("Email"), s.getString("PhoneNumber"));
+                }
+                else {
+                    System.out.println("Your account has been suspended.");
+                    login=false;
+                }
             } else {
                 System.out.println("UserName or Password is Wrong try again");
             }

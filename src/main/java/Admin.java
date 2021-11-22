@@ -8,8 +8,7 @@ public class Admin {
         Password = password;
     }
 
-    public void listPending()
-    {
+    public void listPending() {
         try {
             DataBase dataBase=new DataBase();
             Connection connection = DriverManager.getConnection(dataBase.getPath());
@@ -41,6 +40,19 @@ public class Admin {
         }
 
     }
+    public void verifyUser(String UserName){
+        try {
+            DataBase dataBase=new DataBase();
+            Connection connection = DriverManager.getConnection(dataBase.getPath());
+            Statement statement = connection.createStatement();
+            statement.executeUpdate("update users set status=1 where UserName='"+UserName+"'");
+            connection.close();
+            statement.close();
+        } catch (SQLException throwables) {
+            System.out.println("Error!");
+        }
+
+    }
     public void suspendDriver(String driverName){
         try {
             DataBase dataBase=new DataBase();
@@ -54,5 +66,34 @@ public class Admin {
             System.out.println("Error!");
         }
 
+    }
+    public void suspendUser(String userName){
+        try {
+            DataBase dataBase=new DataBase();
+            Connection connection = DriverManager.getConnection(dataBase.getPath());
+            Statement statement = connection.createStatement();
+            statement.executeUpdate("update users set status=0 where userName='"+userName+"'");
+            connection.close();
+            statement.close();
+        }
+        catch (SQLException throwables) {
+            System.out.println("Error!");
+        }
+
+    }
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPassword() {
+        return Password;
+    }
+
+    public void setPassword(String password) {
+        Password = password;
     }
 }

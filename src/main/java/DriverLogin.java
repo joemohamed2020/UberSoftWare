@@ -22,11 +22,18 @@ public class DriverLogin implements ILogin {
                     break;
                 }
             }
+
             if (login) {
-                System.out.println("Welcome Back:)");
-                System.out.println("==============");
-                driver = new Driver(s.getString("driverName"), s.getString("password"), s.getString("Email"), s.getString("PhoneNumber"), s.getString("licence"), s.getString("NationalId"));
-            } else {
+                if (s.getInt("status")==1) {
+                    System.out.println("Welcome Back:)");
+                    System.out.println("==============");
+                    driver = new Driver(s.getString("driverName"), s.getString("password"), s.getString("Email"), s.getString("PhoneNumber"), s.getString("licence"), s.getString("NationalId"));
+                } else {
+                    System.out.println("Your account has been suspended.");
+                    login=false;
+                }
+            }
+            else {
                 System.out.println("UserName or Password is Wrong try again");
             }
 

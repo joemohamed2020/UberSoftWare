@@ -20,7 +20,7 @@ public class UserRegister implements IRegister {
             System.out.print("PhoneNumber: ");
             String phone = scanner.next();
             if (!email.equals(null)) {
-                statement.executeUpdate("INSERT INTO users VALUES('" + userName + "','" + password + "','" + email + "','" + phone + "')");
+                statement.executeUpdate("INSERT INTO users VALUES('" + userName + "','" + password + "','" + email + "','" + phone + "',"+ 1 +")");
             }
             else {
                 statement.executeUpdate("INSERT INTO users VALUES('" + userName + "','" + password + "','" + email + "','" + phone + "')");
