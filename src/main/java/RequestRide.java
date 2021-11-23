@@ -18,7 +18,7 @@ public class RequestRide {
             System.out.println("We are locking for Driver Now Please Wait");
         }
         catch (SQLException throwables) {
-            throwables.printStackTrace();
+            System.out.println("You are already Request a Ride!!!!!!!");
         }
     }
 }

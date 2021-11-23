@@ -37,7 +37,7 @@ public class main {
                         Person user = login.login();
                         if (login.isLogin()) {
                             while (true) {
-                                System.out.println("1-Request a Ride\n2-open Profile\n3-My pending Rides\n4-Rate Driver\n4-LogOut");
+                                System.out.println("1-Request a Ride\n2-open Profile\n3-My pending Rides\n4-Rate Driver\n5-LogOut");
                                 int choose3 = scanner.nextInt();
                                 if (choose3 == 1) {
                                     RequestRide ride=new RequestRide();
@@ -50,7 +50,10 @@ public class main {
                                     MyPendingRides.MyPendingRides(user.getUserName());
 
                                 }
-                                else if (choose3 == 4) {
+                                else if(choose3==4){
+                                    DriverRate.Rate(user.getUserName());
+                                }
+                                else if (choose3 == 5) {
                                     user = null;
                                     break;
                                 }

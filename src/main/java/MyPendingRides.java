@@ -7,7 +7,7 @@ public class MyPendingRides {
         int count=0;
         Scanner scanner=new Scanner(System.in);
         try{
-           ResultSet r= DataBase.getStatement().executeQuery("select * from PendingRide,Drivers where userName='"+username+"'");
+           ResultSet r= DataBase.getStatement().executeQuery("select * from PendingRide where userName='"+username+"'");
            while (r.next()){
                count++;
                if (r.getFloat("offer")==0){
@@ -15,13 +15,13 @@ public class MyPendingRides {
                break;
                }
                else{
-                   ResultSet s=DataBase.getStatement().executeQuery("select AVGRate from Drivers,PendingRide where userName='"+username+"'and Drivers.driverName=PendingRide.driverName");
+                   ResultSet s=DataBase.getStatement().executeQuery("select * from Drivers,PendingRide where userName='"+username+"'and Drivers.driverName=PendingRide.driverName");
                    System.out.println("=================" +
-                           "\nDriverName:"+r.getString("driverName")+
+                           "\nDriverName:"+s.getString("driverName")+
                            "\nRate:"+s.getString("AVGRate")+
-                           "\nSource:"+r.getString("source")+
-                           "\nDestination:"+r.getString("destination")+
-                           "\nOffer:"+r.getString("offer")+"\n=================");
+                           "\nSource:"+s.getString("source")+
+                           "\nDestination:"+s.getString("destination")+
+                           "\nOffer:"+s.getString("offer")+"\n=================");
                    System.out.println("Do you Accept this offer?yes/no");
                    String input=scanner.next();
                    if (input.equalsIgnoreCase("yes")){
@@ -41,6 +41,7 @@ public class MyPendingRides {
                System.out.println("There is no Pending Rides For you");
            }
         } catch (SQLException throwables) {
+            throwables.printStackTrace();
             System.out.println("Error!");
         }
     }
