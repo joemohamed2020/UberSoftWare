@@ -22,7 +22,7 @@ public class DriverRegister implements IRegister {
             String licence=scanner.next();
             System.out.print("NationalID: ");
             String nationalId=scanner.next();
-            DataBase.getStatement().executeUpdate("INSERT INTO Drivers VALUES('"+userName+"','"+password+"','"+email+"','"+phone+"','"+licence+"','"+nationalId+"',"+0+")");
+            DataBase.getStatement().executeUpdate("INSERT INTO Drivers VALUES('"+userName+"','"+password+"','"+email+"','"+phone+"','"+licence+"','"+nationalId+"',"+0+","+0+")");
         }
         catch (SQLException sql){
             System.out.println("This Driver is already exist!");

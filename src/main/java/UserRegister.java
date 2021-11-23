@@ -35,7 +35,6 @@ public class UserRegister implements IRegister {
                 DataBase.getStatement().executeUpdate("INSERT INTO users VALUES('" + userName + "','" + password + "'," + null + ",'" + phone + "',"+ 1 +")");
             }
         } catch (SQLException sql) {
-            sql.printStackTrace();
             System.out.println("This User is already exist!");
         }
     }

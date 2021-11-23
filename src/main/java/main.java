@@ -37,16 +37,20 @@ public class main {
                         Person user = login.login();
                         if (login.isLogin()) {
                             while (true) {
-                                System.out.println("1-Request A Ride");
-                                System.out.println("2-open Profile");
-                                System.out.println("3-LogOut");
+                                System.out.println("1-Request a Ride\n2-open Profile\n3-My pending Rides\n4-Rate Driver\n4-LogOut");
                                 int choose3 = scanner.nextInt();
                                 if (choose3 == 1) {
-
-                                } else if (choose3 == 2) {
+                                    RequestRide ride=new RequestRide();
+                                    ride.requestRide(user.getUserName());
+                                }
+                                else if(choose3==2){
                                     System.out.println(user);
+                                }
+                                else if (choose3 == 3) {
+                                    MyPendingRides.MyPendingRides(user.getUserName());
 
-                                } else if (choose3 == 3) {
+                                }
+                                else if (choose3 == 4) {
                                     user = null;
                                     break;
                                 }
@@ -60,7 +64,8 @@ public class main {
                         Person driver = login.login();
                         if (login.isLogin()) {
                             while (true) {
-                                System.out.println("1-Add Favorite Area\n2-Remove Favorite Area\n3-List All Favorite Areas\n4-LogOut");
+
+                                System.out.println("1-Add Favorite Area\n2-Remove Favorite Area\n3-List All Favorite Areas\n4-Choose a Ride\n5-LogOut");
                                 int choose3 = scanner.nextInt();
                                 if (choose3 == 1) {
                                     System.out.println("Enter Source Location:");
@@ -81,7 +86,12 @@ public class main {
                                     favArea.listFav(driver.getUserName());
                                     System.out.println("===================");
                                 }
-                                else if (choose3 == 4) {
+                                else if (choose3==4){
+                                    Offer.Offer(driver.getUserName());
+                                }
+
+
+                                else if (choose3==5 ) {
                                     driver = null;
                                     break;
                                 }
@@ -95,25 +105,26 @@ public class main {
                         String password=scanner.next();
                         if (admin.getName().equals(userName)&&admin.getPassword().equals(password)){
                             while (true) {
-                                System.out.println("1-Suspend user.\n2-Suspend Driver\n3-Verify User\n4-Verify Driver\n5-LogOut");
+                                System.out.println("1-Suspend User.\n2-Suspend Driver\n3-Verify User\n4-Verify Driver\n5-LogOut");
                                 int choose3 = scanner.nextInt();
                                 if (choose3 == 1) {
-                                    System.out.print("Enter UserName:");
+                                    System.out.print("Choose UserName to suspend:");
                                     String u = scanner.next();
                                     admin.suspendUser(u);
                                 }
                                 else if (choose3 == 2) {
-                                    System.out.println("Enter DriverName:");
+                                    System.out.println("Choose DriverName to suspend:");
                                     String d = scanner.next();
                                     admin.suspendDriver(d);
                                 }
                                 else if (choose3 == 3) {
-                                    System.out.println("Enter UserName:");
+                                    System.out.println("Choose UserName to Verify:");
                                     String u = scanner.next();
                                     admin.verifyUser(u);
                                 }
                                 else if (choose3 == 4) {
-                                    System.out.println("Enter DriverName:");
+                                    admin.listPending();
+                                    System.out.print("Choose DriverName to Verify:");
                                     String d = scanner.next();
                                     admin.verifyDriver(d);
                                 }
