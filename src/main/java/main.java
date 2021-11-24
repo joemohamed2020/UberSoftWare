@@ -4,7 +4,7 @@ public class main {
     public static void main(String[] args) {
         DataBase.connect();
         System.out.println("=======================\nWelcome to our app :)\n=======================");
-        Admin admin=new Admin("3mtaha","yoyo");
+        Admin admin=new Admin("3mtaha","1234");
         while (true) {
             System.out.println("============Main Menu============\n1-Register.\n2-LogIn\n3-Exit");
             Scanner scanner = new Scanner(System.in);
@@ -67,8 +67,7 @@ public class main {
                         Person driver = login.login();
                         if (login.isLogin()) {
                             while (true) {
-
-                                System.out.println("1-Add Favorite Area\n2-Remove Favorite Area\n3-List All Favorite Areas\n4-Choose a Ride\n5-LogOut");
+                                System.out.println("1-Add Favorite Area\n2-Remove Favorite Area\n3-List All Favorite Areas\n4-Choose a Ride\n5-My Rates\n6-LogOut");
                                 int choose3 = scanner.nextInt();
                                 if (choose3 == 1) {
                                     System.out.println("Enter Source Location:");
@@ -92,9 +91,11 @@ public class main {
                                 else if (choose3==4){
                                     Offer.Offer(driver.getUserName());
                                 }
+                                else if (choose3==5){
+                                    DriverRate.listAllRate(driver.getUserName());
+                                }
 
-
-                                else if (choose3==5 ) {
+                                else if (choose3==6 ) {
                                     driver = null;
                                     break;
                                 }
@@ -108,7 +109,7 @@ public class main {
                         String password=scanner.next();
                         if (admin.getName().equals(userName)&&admin.getPassword().equals(password)){
                             while (true) {
-                                System.out.println("1-Suspend User.\n2-Suspend Driver\n3-Verify User\n4-Verify Driver\n5-LogOut");
+                                System.out.println("1-Suspend User.\n2-Suspend Driver\n3-Verify User\n4-Verify Driver\n5-List all pending drivers\n6-LogOut");
                                 int choose3 = scanner.nextInt();
                                 if (choose3 == 1) {
                                     System.out.print("Choose UserName to suspend:");
@@ -131,7 +132,10 @@ public class main {
                                     String d = scanner.next();
                                     admin.verifyDriver(d);
                                 }
-                                else if (choose3 == 5) {
+                                else if(choose3==5){
+                                    admin.listPending();
+                                }
+                                else if (choose3 == 6) {
                                     break;
                                 }
                             }

@@ -55,4 +55,21 @@ public class DriverRate {
 
 
     }
+    public static void listAllRate(String driverName){
+        try {
+
+            ResultSet Rating= DataBase.getStatement().executeQuery("select * from Ride where driverName='"+driverName+"'");
+            while (Rating.next()){
+                System.out.println("======================\nUserName:"+Rating.getString("userName")
+                        +"\nSource:"+Rating.getString("source")
+                        +"\nDestination:" +Rating.getString("destination")
+                        +"\nRate:"+Rating.getString("Rate"));
+            }
+            System.out.println("======================");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            System.out.println("Error!");
+        }
+
+    }
 }

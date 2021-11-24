@@ -25,11 +25,13 @@ public class MyPendingRides {
                    System.out.println("Do you Accept this offer?yes/no");
                    String input=scanner.next();
                    if (input.equalsIgnoreCase("yes")){
-                       DataBase.getStatement().executeUpdate("INSERT INTO Ride VALUES ('"+r.getString("driverName")
+                       DataBase.getStatement().executeUpdate("INSERT INTO Ride (driverName, userName, source, destination,Rate, Price) values('"+r.getString("driverName")
                                +"','"+username
                                +"','"+r.getString("source")
                                +"','"+r.getString("destination")
-                               +"',"+null+","+r.getFloat("offer")+")");
+                               +"',"+-1
+                               +","+r.getFloat("offer")
+                               +")");
                        DataBase.getStatement().executeUpdate("Delete from PendingRide where userName='"+username+"'");
                    }
                    else{
